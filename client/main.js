@@ -73,7 +73,7 @@ function sendMoves(board, websocket) {
 
 function getWebSocketServer() {
   if (window.location.host === "wstest.pertech.se") {
-    return "wss://wstest-socket.pertech.se/";
+    return "wss://wstest-ws.pertech.se/";
   } else if (window.location.host === "localhost:8000") {
     return "ws://localhost:8008/";
   } else {
