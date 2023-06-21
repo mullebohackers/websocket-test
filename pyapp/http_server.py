@@ -20,7 +20,7 @@ async def http_server(port:int):
 
     app = web.Application()
     app.router.add_route('*', '/', root_handler)
-    app.router.add_static('/', './client')
+    app.router.add_static('/', './jsapp/build')
     runner = web.AppRunner(app)
 
     await runner.setup()
