@@ -10,8 +10,11 @@ import websockets
 
 async def handler(websocket):
     async for message in websocket:
-        event = json.loads(message)
+        # event = json.loads(message)
+        logging.info(f"websocket message recieved: {message}")
+        pass
         # Do nothing! Just a stub.
+        await websocket.send(f"Echo: {message}")
 
 
 async def websocket_server(port:int):
@@ -20,4 +23,4 @@ async def websocket_server(port:int):
     
     """
     logging.info(f"Starting websocket-server. Listens on port {port}")
-    await websockets.serve(handler, "", port=port)        # Set up a websocket handler
+    await websockets.serve(handler, port=port)        # Set up a websocket handler

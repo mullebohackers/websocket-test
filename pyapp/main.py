@@ -10,9 +10,9 @@ Environment
 """
 DEBUG_MODE = os.getenv('DEBUG', "false") == "true"                       # Global DEBUG logging
 LOGFORMAT = "%(asctime)s %(funcName)-10s [%(levelname)s] %(message)s"   # Log format
-HTTP_SERVER_PORT = int(os.getenv('HTTP_SERVER_PORT',"8000"))
 WEBSOCKET_SERVER_PORT = int(os.getenv('WEBSOCKET_SERVER_PORT',"8008"))
-
+HTTP_SERVER_PORT = int(os.getenv('HTTP_SERVER_PORT',"8000"))
+HTTP_STATIC_DIR = os.getenv('HTTP_STATIC_DIR', "./jsapp/out")
 
 """
 MAIN function (starting point)
@@ -25,7 +25,7 @@ def main():                 # noqa:E302
     # loop = asyncio.get_event_loop()         # Create an async loop
 
     websocket_runner = loop.create_task(websocket_server(WEBSOCKET_SERVER_PORT))
-    http_runner = loop.create_task(http_server(HTTP_SERVER_PORT))        # Create http server # noqa:F841
+    http_runner = loop.create_task(http_server(HTTP_SERVER_PORT, HTTP_STATIC_DIR))        # Create http server # noqa:F841
 
     try:
         asyncio.set_event_loop(loop)        # Make the create loop the event loop
