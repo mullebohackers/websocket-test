@@ -26,10 +26,10 @@ async def main():                 # noqa:E302
     loop.add_signal_handler(signal.SIGTERM, stop.set_result, None)
 
     websocket_runner = loop.create_task(websocket_server(WEBSOCKET_SERVER_PORT))
-    http_runner = loop.create_task(http_server(HTTP_SERVER_PORT, HTTP_STATIC_DIR))        # Create http server # noqa:F841
+    # http_runner = loop.create_task(http_server(HTTP_SERVER_PORT, HTTP_STATIC_DIR))        # Create http server # noqa:F841
 
     await stop      # Run forever until stopped!
-    await http_runner.cleanup()     # Close all ongoing connections
+    # await http_runner.cleanup()     # Close all ongoing connections
 
 if __name__ == "__main__":
     # Enable logging. INFO is default. DEBUG if requested
